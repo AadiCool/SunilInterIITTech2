@@ -142,6 +142,7 @@ public class HeadService extends Service implements TextToSpeech.OnInitListener 
 						isPlayed= false;
 						try {
 							handler.removeCallbacks(runnableSpeak);
+							mArrow.setVisibility(View.GONE);
 						} catch (Exception ignored){
 							Log.d("SPEAK RUNNABLE", "NO RUNNABLE ATTACHED");
 						}
