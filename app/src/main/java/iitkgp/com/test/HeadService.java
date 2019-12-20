@@ -74,6 +74,7 @@ public class HeadService extends Service implements TextToSpeech.OnInitListener 
 	
 	private int initialX, initialY;
 	private float initialTouchX, initialTouchY;
+	private Point size;
 	
 	final Runnable runnableSpeak = new Runnable() {
 		public void run() {
@@ -201,6 +202,8 @@ public class HeadService extends Service implements TextToSpeech.OnInitListener 
 		Log.d("SERVICE", "Starting command");
 		resultCode = i.getIntExtra(EXTRA_RESULT_CODE, 1337);
 		resultData = i.getParcelableExtra(EXTRA_RESULT_INTENT);
+		size = i.getParcelableExtra("Size");
+		Log.d("SIZE", size.x +" "+size.y);
 		return (START_NOT_STICKY);
 	}
 	
@@ -339,8 +342,8 @@ public class HeadService extends Service implements TextToSpeech.OnInitListener 
 								int index = screen.getCurrentMainKeywordIndex(allKeywords);
 								if(index !=- 1) {
 									Log.d("MAIN KEYWORD", allKeywords.get(index));
-									params.x = (int) allPositions.get(index).x;
-									params.y = (int) allPositions.get(index).y;
+									params.x = (int) ((float)allPositions.get(index).x/bitmap.getWidth()*size.x);
+									params.y = (int) ((float)allPositions.get(index).y/bitmap.getHeight()*size.y);
 									Log.d("MAIN KEYWORD position x", String.valueOf(params.x));
 									Log.d("MAIN KEYWORD position y", String.valueOf(params.y));
 									params.alpha = 1;

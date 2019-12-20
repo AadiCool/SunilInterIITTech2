@@ -86,7 +86,8 @@ public class MyListAdaptar extends RecyclerView.Adapter<MyListAdaptar.ListViewHo
 					}
 					Intent i = new Intent(context, HeadService.class)
 						.putExtra(HeadService.EXTRA_RESULT_CODE, resultCode)
-						.putExtra(HeadService.EXTRA_RESULT_INTENT, data);
+						.putExtra(HeadService.EXTRA_RESULT_INTENT, data)
+						.putExtra("Size", size);
 					Log.d("SERVICE", "Starting Service");
 					context.startService(i);
 					context.finish();
@@ -102,7 +103,8 @@ public class MyListAdaptar extends RecyclerView.Adapter<MyListAdaptar.ListViewHo
 					}
 					Intent i = new Intent(context, HeadServiceAgri.class)
 						.putExtra(HeadService.EXTRA_RESULT_CODE, resultCode)
-						.putExtra(HeadService.EXTRA_RESULT_INTENT, data);
+						.putExtra(HeadService.EXTRA_RESULT_INTENT, data)
+						.putExtra("Size", size);
 					Log.d("SERVICE", "Starting Service Agri");
 					context.startService(i);
 					context.finish();
