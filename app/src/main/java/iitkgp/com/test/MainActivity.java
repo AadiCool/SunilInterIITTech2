@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
 			ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.REQUEST_INSTALL_PACKAGES) != PackageManager.PERMISSION_GRANTED) {
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.REQUEST_INSTALL_PACKAGES},
 				READ_WRITE_EXTERNAL_STORAGE);
-		} else installApk();
+		} //else installApk();
 		
 		if (!Settings.canDrawOverlays(this)) {
 			Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
 	}
 	
 	private void installApk(){
-		/*Log.d("ASSETS", "Install required");
+		Log.d("ASSETS", "Install required");
 		try {
 			Log.d("ASSETS", "Starting copy");
 			InputStream myInput = getAssets().open("hardware.apk");
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
 			
 		} catch (IOException e){
 			e.printStackTrace();
-		}*/
+		}
 	}
 	
 	public static List<Screen> getScreens() {

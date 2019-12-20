@@ -53,7 +53,7 @@ public class HeadService extends Service implements TextToSpeech.OnInitListener 
 	private static boolean isPlayed  = false;
 	public static final String EXTRA_RESULT_CODE = "resultCode";
 	public static final String EXTRA_RESULT_INTENT = "resultIntent";
-	static final int helpDelay= 10000;
+	static final int helpDelay= 5000;
 	private int resultCode;
 	private Intent resultData;
 	
@@ -237,7 +237,6 @@ public class HeadService extends Service implements TextToSpeech.OnInitListener 
 						else if(utteranceId.equals("HelpSpeak")) {
 							handler.removeCallbacks(runnableSpeak);
 							handler.postDelayed(runnableSpeak, helpDelay);
-							//mArrow.setVisibility(View.GONE);
 						}
 					} catch (Exception e){
 						Log.e("SPEAK EXCEPTION", e.getMessage());

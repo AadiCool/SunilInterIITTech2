@@ -48,13 +48,14 @@ public class HeadServiceAgri extends Service implements TextToSpeech.OnInitListe
 	private WindowManager mWindowManagerNext;
 	private View mPointer;
 	private View mNext;
+	private View mArrow;
 	WindowManager.LayoutParams params;
 	WindowManager.LayoutParams paramsNext;
 	private TextToSpeech tts;
 	private static boolean isPlayed  = false;
 	static final String EXTRA_RESULT_CODE = "resultCode";
 	static final String EXTRA_RESULT_INTENT = "resultIntent";
-	static final int helpDelay= 10000;
+	static final int helpDelay= 5000;
 	private int resultCode;
 	private Intent resultData;
 	
@@ -71,7 +72,7 @@ public class HeadServiceAgri extends Service implements TextToSpeech.OnInitListe
 	HashMap<String, String> paramsTTS;
 	HashMap<String, String> paramsTTSSpeak;
 	
-	private ObjectAnimator scaleDown;
+	private ObjectAnimator alphaAnimation;
 	
 	private int initialX, initialY;
 	private float initialTouchX, initialTouchY;
@@ -79,8 +80,9 @@ public class HeadServiceAgri extends Service implements TextToSpeech.OnInitListe
 	final Runnable runnableSpeak = new Runnable() {
 		public void run() {
 			Log.d("Runnable","Handler is working");
-			scaleDown.start();
-			tts.speak("Help ke liye pointer pe dabaaye", TextToSpeech.QUEUE_FLUSH, paramsTTSSpeak);
+			alphaAnimation.start();
+			tts.speak("कृपया सहायता के लिए ई-साथी बटन पर क्लिक करें", TextToSpeech.QUEUE_FLUSH, paramsTTSSpeak);
+			mArrow.setVisibility(View.VISIBLE);
 		}
 	};
 	
@@ -97,6 +99,8 @@ public class HeadServiceAgri extends Service implements TextToSpeech.OnInitListe
 		tts = new TextToSpeech(getApplicationContext(), this);
 		mPointer = LayoutInflater.from(this).inflate(R.layout.pointer, null);
 		mNext = LayoutInflater.from(this).inflate(R.layout.next_screen, null);
+		mArrow = mNext.findViewById(R.id.arrow_head);
+		mArrow.setVisibility(View.GONE);
 		
 		int LAYOUT_FLAG = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 			? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
@@ -115,11 +119,7 @@ public class HeadServiceAgri extends Service implements TextToSpeech.OnInitListe
 			WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
 			PixelFormat.TRANSLUCENT);
 		
-		scaleDown = ObjectAnimator.ofPropertyValuesHolder(mNext,
-			PropertyValuesHolder.ofFloat("scaleX", 1.0f, .2f),
-			PropertyValuesHolder.ofFloat("scaleY", 1.0f, .2f));
-		scaleDown.setInterpolator(new CycleInterpolator(5));
-		scaleDown.setDuration(2500);
+		alphaAnimation = setAlphaAnimation(mNext);
 		
 		mgr = (MediaProjectionManager) getSystemService(MEDIA_PROJECTION_SERVICE);
 		mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
@@ -141,6 +141,7 @@ public class HeadServiceAgri extends Service implements TextToSpeech.OnInitListe
 						isPlayed= false;
 						try {
 							handler.removeCallbacks(runnableSpeak);
+							mArrow.setVisibility(View.GONE);
 						} catch (Exception ignored){
 							Log.d("SPEAK RUNNABLE", "NO RUNNABLE ATTACHED");
 						}
@@ -184,6 +185,13 @@ public class HeadServiceAgri extends Service implements TextToSpeech.OnInitListe
 			}
 		});
 		handler.postDelayed(runnableSpeak, helpDelay);
+	}
+	
+	private ObjectAnimator setAlphaAnimation(View view){
+		ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, "alpha", 1.0f, .2f);
+		objectAnimator.setInterpolator(new CycleInterpolator(5));
+		objectAnimator.setDuration(2500);
+		return objectAnimator;
 	}
 	
 	@Override
