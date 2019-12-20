@@ -48,10 +48,10 @@ import iitkgp.com.test.adapters.MyListAdaptar;
 
 public class MainActivity extends AppCompatActivity implements OnInitListener{
 	
-	private int[] sids = {R.drawable.agriculture, R.drawable.cabs, R.drawable.edication, R.drawable.recharge, R.drawable.reservations, R.drawable.shopping};
-	private int[] hids = {R.drawable.agricultureh, R.drawable.laptop, R.drawable.medical, R.drawable.microwave, R.drawable.printer, R.drawable.remote};
-	private String[] bgcolorS = {"#B3DECC", "#DDC7E1", "#F2BBB3", "#C9E199", "#C9DBF1", "#F2D6A4"};
-	private String[] bgcolorH = {"#F3D6A4", "#C9E199", "#F2BAB3", "#DEC8E2", "#B3DECC", "#C9DCF2"};
+	private int[] sids = {R.drawable.agriculture, R.drawable.cabs, R.drawable.education, R.drawable.recharge, R.drawable.reservations, R.drawable.shopping};
+	private int[] hids = {R.drawable.farming, R.drawable.laptop, R.drawable.medical, R.drawable.microwave, R.drawable.printer, R.drawable.remote};
+	private String[] bgcolorS = {"#BA1425", "#331099", "#0BB4A6", "#9313AF", "#B4600B", "#0D7745"};
+	private String[] bgcolorH = {"#0D7745", "#9313AF", "#0BB4A6", "#331099", "#BA1425", "#B4600b"};
 	
 	private List<String> speechS = Arrays.asList("कृषि के लिए यहां क्लिक करें", "कैब के लिए यहां क्लिक करें", "शिक्षा के लिए यहां क्लिक करें", "रिचार्ज के लिए यहां क्लिक करें", "आरक्षण के लिए यहां क्लिक करें", "खरीदारी के लिए यहां क्लिक करें");
 	private List<String> speechH = Arrays.asList("कृषि के लिए यहां क्लिक करें", "लैपटॉप के लिए यहां क्लिक करें", "चिकित्सा उपकरणों के लिए यहां क्लिक करें", "माइक्रोवेव के लिए यहां क्लिक करें", "प्रिंटर के लिए यहां क्लिक करें", "रिमोट के लिए यहां क्लिक करें");
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
 	}
 	
 	private void installApk(){
-		Log.d("ASSETS", "Install required");
+		/*Log.d("ASSETS", "Install required");
 		try {
 			Log.d("ASSETS", "Starting copy");
 			InputStream myInput = getAssets().open("hardware.apk");
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
 			
 		} catch (IOException e){
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	public static List<Screen> getScreens() {

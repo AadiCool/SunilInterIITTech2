@@ -55,7 +55,7 @@ public class HeadServiceAgri extends Service implements TextToSpeech.OnInitListe
 	private static boolean isPlayed  = false;
 	static final String EXTRA_RESULT_CODE = "resultCode";
 	static final String EXTRA_RESULT_INTENT = "resultIntent";
-	static final int helpDelay= 5000;
+	static final int helpDelay= 8000;
 	private int resultCode;
 	private Intent resultData;
 	

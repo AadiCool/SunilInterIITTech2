@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:cardBackgroundColor="#90BAE1"
+            app:cardBackgroundColor="#CC2936"
             app:cardCornerRadius="15dp">
 
             <ImageView
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:cardCornerRadius="15dp"
-            card_view:cardBackgroundColor="#F2BBB3">
+            card_view:cardBackgroundColor="#15617F">
 
             <ImageView
                 android:id="@+id/hardware"

@@ -112,6 +112,7 @@ public class MyListAdaptar extends RecyclerView.Adapter<MyListAdaptar.ListViewHo
 					Intent appstart = pm.getLaunchIntentForPackage(appPackageName);
 					if (null != appstart)
 						context.getApplicationContext().startActivity(appstart);
+					context.finish();
 				}
 			}
 		});

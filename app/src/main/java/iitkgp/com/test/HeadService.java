@@ -53,7 +53,7 @@ public class HeadService extends Service implements TextToSpeech.OnInitListener 
 	private static boolean isPlayed  = false;
 	public static final String EXTRA_RESULT_CODE = "resultCode";
 	public static final String EXTRA_RESULT_INTENT = "resultIntent";
-	static final int helpDelay= 5000;
+	static final int helpDelay= 8000;
 	private int resultCode;
 	private Intent resultData;
 	
