@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chat_head_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="24dp"
+    android:paddingEnd="24dp"
+    tools:ignore="RtlSymmetry">
+
+    <ImageView
+        android:id="@+id/arrow_head"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:src="@drawable/arrow"
+        tools:ignore="ContentDescription"
+        android:elevation="8dp"
+        android:padding="4dp" />
+
+    <!--Close button-->
+    <ImageView
+        android:id="@+id/chat_head_profile_iv"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:src="@drawable/logo"
+        android:background="@drawable/circle"
+        tools:ignore="ContentDescription"
+        android:elevation="8dp"
+        android:padding="4dp" />
+
+
+
+</LinearLayout>
