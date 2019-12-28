@@ -3,6 +3,7 @@ package iitkgp.com.test;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -20,6 +21,7 @@ public class SplashActivity extends AppCompatActivity {
 		
 		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 		Objects.requireNonNull(getSupportActionBar()).hide();
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
 		ImageView imageView = findViewById(R.id.splash_screen);
 		Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);

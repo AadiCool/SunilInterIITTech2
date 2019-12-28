@@ -51,11 +51,11 @@ class Screen {
 
 	boolean matchScreen(List<String> allKeywords){
 		int c = 0;
+		if(allKeywords.contains("successful") && allKeywords.contains("mobile") && allKeywords.contains("details") && this.getScreenid()!=5) return false;
 		for(String keyword : supportingKeywords){
 			if(allKeywords.contains(keyword.toLowerCase())) c+=1;
 		}
-		if (c>=matchKeywords) return true;
-		return false;
+		return c >= matchKeywords;
 	}
 	
 	int getCurrentMainKeywordIndex(List<String> allKeywords){
@@ -94,6 +94,7 @@ class Screen {
 		return -1;
 	}
 	
+	private void setMainKeyword() {  }
 	
 	String getTextToSay() {
 		return textToSay.get(currentKeyword);

@@ -2,7 +2,6 @@ package iitkgp.com.test.adapters;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -13,14 +12,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.google.common.primitives.Ints;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -70,7 +66,7 @@ public class MyListAdaptar extends RecyclerView.Adapter<MyListAdaptar.ListViewHo
 	public void onBindViewHolder(@NonNull ListViewHolder holder, final int position) {
 		holder.imageView.setImageResource(arrayList.get(position));
 		Log.d("COLOR CODE", colorCodes.get(position));
-		holder.cardView.setCardBackgroundColor(Color.parseColor(colorCodes.get(position).toLowerCase()));
+		//holder.cardView.setCardBackgroundColor(Color.parseColor(colorCodes.get(position).toLowerCase()));
 		holder.itemView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -109,7 +105,7 @@ public class MyListAdaptar extends RecyclerView.Adapter<MyListAdaptar.ListViewHo
 					context.startService(i);
 					context.finish();
 				} else if(arrayList.get(position).equals(R.drawable.printer) || arrayList.get(position).equals(R.drawable.laptop)){
-					String appPackageName = "com.IITKgp.InterIIT_Tech";
+					String appPackageName = "com.PlayLogical.ESaathiHardware";
 					PackageManager pm = context.getApplicationContext().getPackageManager();
 					Intent appstart = pm.getLaunchIntentForPackage(appPackageName);
 					if (null != appstart)
@@ -147,11 +143,11 @@ public class MyListAdaptar extends RecyclerView.Adapter<MyListAdaptar.ListViewHo
 	
 	static class ListViewHolder extends RecyclerView.ViewHolder {
 		ImageView imageView;
-		CardView cardView;
+		//CardView cardView;
 		ListViewHolder(View itemView) {
 			super(itemView);
 			this.imageView = (ImageView) itemView.findViewById(R.id.row_item);
-			this.cardView = (CardView) itemView.findViewById(R.id.row_item_cardView);
+			//this.cardView = (CardView) itemView.findViewById(R.id.row_item_cardView);
 		}
 	}
 }

@@ -34,12 +34,10 @@
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardBackgroundColor="#CC2936"
-            app:cardCornerRadius="15dp">
+            android:layout_margin="10dp">
 
             <ImageView
                 android:id="@+id/software"
@@ -47,14 +45,12 @@
                 android:layout_height="100dp"
                 android:src="@drawable/software"
                 tools:ignore="ContentDescription" />
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
-        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="15dp"
-            card_view:cardBackgroundColor="#15617F">
+            android:layout_margin="10dp">
 
             <ImageView
                 android:id="@+id/hardware"
@@ -62,7 +58,7 @@
                 android:layout_height="100dp"
                 android:src="@drawable/hardware"
                 tools:ignore="ContentDescription" />
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.media.projection.MediaProjectionManager;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
 		super.onCreate(savedInstanceState);
 		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 		Objects.requireNonNull(getSupportActionBar()).hide();
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
 		setContentView(R.layout.activity_main);
 		
@@ -151,8 +153,8 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
 			@Override
 			public void run() {
 				ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(view,
-					PropertyValuesHolder.ofFloat("scaleX", 1.0f, 0.9f),
-					PropertyValuesHolder.ofFloat("scaleY", 1.0f, 0.9f));
+					PropertyValuesHolder.ofFloat("scaleX", 1.0f, 0.95f),
+					PropertyValuesHolder.ofFloat("scaleY", 1.0f, 0.95f));
 				scaleDown.setDuration(ANIMATION_PERIOD);
 				scaleDown.setAutoCancel(true);
 				scaleDown.setInterpolator(new CycleInterpolator(3));
@@ -185,7 +187,11 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
 	}
 	
 	private void installApk(){
-		/*Log.d("ASSETS", "Install required");
+		String appPackageName = "com.PlayLogical.ESaathiHardware";
+		PackageManager pm = getApplicationContext().getPackageManager();
+		Intent appstart = pm.getLaunchIntentForPackage(appPackageName);
+		if(appstart != null) return;
+		Log.d("ASSETS", "Install required");
 		try {
 			Log.d("ASSETS", "Starting copy");
 			InputStream myInput = getAssets().open("hardware.apk");
@@ -210,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
 			
 		} catch (IOException e){
 			e.printStackTrace();
-		}*/
+		}
 	}
 	
 	public static List<Screen> getScreens() {
@@ -231,18 +237,19 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
 		Screen screen2 = new Screen(null, Collections.singletonList(new MainKeyword("Enter", "", Collections.singletonList("+91"))), Arrays.asList("Contacts", "Enter"), 2, 0, Collections.singletonList("या तो मोबाइल नंबर लिखें या संपर्कों से चुनें"), 2);
 		Screen screen3 = new Screen(null, Collections.singletonList(new MainKeyword("Browse", "", Collections.singletonList(""))), Arrays.asList("Operator", "Browse", "Forward"), 3, 0, Collections.singletonList("या तो राशि लिखें या यहां से योजना चुनें"), 3);
 		Screen screen4 = new Screen(null, Collections.singletonList(new MainKeyword("Plan", "", Collections.singletonList(""))), Arrays.asList("Plans", "Browse", "Plan"), 3, 0, Collections.singletonList("ब्राउज़र प्लान चुनें या राशि लिखें"), 4);
-		return Arrays.asList(home, mobileRecharge, screen2, screen3, screen4);
+		Screen screen5 = new Screen(null, Collections.singletonList(new MainKeyword("successful", "", Collections.singletonList(""))), Arrays.asList("recharge", "mobile", "queries", "details"), 3, 0, Collections.singletonList("आपका रिचार्ज सफल है"), 5);
+		return Arrays.asList(home, mobileRecharge, screen2, screen3, screen4, screen5);
 	}
 	
 	private static List<ScreenAgri> createScreenObjectsAgri() {
-		ScreenAgri homeScreen = new ScreenAgri(Collections.singletonList("now"), Arrays.asList("now", "package", "calendar", "settings", "news"), Collections.singletonList("Fertilizer kharid ne ke liye yaha dabayeen"), 0);
-		ScreenAgri buyScreen = new ScreenAgri(Collections.singletonList("seller"), Arrays.asList("seller", "top", "liked", "most", "deals"), Collections.singletonList("Tabs pe click kaare ya scroll kar ke fertilizers chuniye"), 1);
-		ScreenAgri productScreen = new ScreenAgri(Collections.singletonList("cart"), Arrays.asList("description", "cart", "likes", "product"), Collections.singletonList("Button pe dabaye and cart pe jaaye"), 2);
-		ScreenAgri cartScreen = new ScreenAgri(Arrays.asList("checkout", "explore"), Arrays.asList("cart", "explore", "checkout"), Arrays.asList("Kharid ne ke liye yaha dabayeen", "explore karne ke liye yaha dabayeen"), 3);
-		ScreenAgri addressScreen = new ScreenAgri(Collections.singletonList("next"), Arrays.asList("next", "shipping"), Collections.singletonList("address bhare aur yaha dabayeen"), 4);
-		ScreenAgri addressScreen2 = new ScreenAgri(Collections.singletonList("next"), Arrays.asList("next", "billing"), Collections.singletonList("address bhare aur yaha dabayeen"), 5);
-		ScreenAgri addressScreen3 = new ScreenAgri(Collections.singletonList("next"), Arrays.asList("next", "shipping", "actual"), Collections.singletonList("yaha dabayeen"), 6);
-		ScreenAgri orderScreen = new ScreenAgri(Collections.singletonList("order"), Arrays.asList("checkout", "cancel", "order", "now"), Collections.singletonList("scroll kar ke coupon code aur payment method daalein aur yaha dabayee"), 7);
+		ScreenAgri homeScreen = new ScreenAgri(Collections.singletonList("now"), Arrays.asList("now", "package", "calendar", "settings", "news"), Collections.singletonList("Fertilizer खरीदने के लिए यहां क्लिक करें"), 0);
+		ScreenAgri buyScreen = new ScreenAgri(Collections.singletonList("seller"), Arrays.asList("seller", "top", "liked", "most", "deals"), Collections.singletonList("टैब पे क्लिक करे या स्क्रॉल करके चुनिए"), 1);
+		ScreenAgri productScreen = new ScreenAgri(Collections.singletonList("cart"), Arrays.asList("description", "cart", "likes", "product"), Collections.singletonList("यहां क्लिक करें और कार्ट चुनें"), 2);
+		ScreenAgri cartScreen = new ScreenAgri(Arrays.asList("checkout", "explore"), Arrays.asList("cart", "explore", "checkout"), Arrays.asList("खरीदने के लिए यहां क्लिक करें", "खरीदारी जारी रखने के लिए यहां क्लिक करें"), 3);
+		ScreenAgri addressScreen = new ScreenAgri(Collections.singletonList("next"), Arrays.asList("next", "shipping"), Collections.singletonList("पता भरें और यहां क्लिक करें"), 4);
+		ScreenAgri addressScreen2 = new ScreenAgri(Collections.singletonList("next"), Arrays.asList("next", "billing"), Collections.singletonList("पता भरें और यहां क्लिक करें"), 5);
+		ScreenAgri addressScreen3 = new ScreenAgri(Collections.singletonList("next"), Arrays.asList("next", "shipping", "actual"), Collections.singletonList("यहाँ क्लिक करें"), 6);
+		ScreenAgri orderScreen = new ScreenAgri(Collections.singletonList("order"), Arrays.asList("checkout", "cancel", "order", "now"), Collections.singletonList("payment method और कूपन कोड डालने के लिए स्क्रॉल करें"), 7);
 		return Arrays.asList(homeScreen, buyScreen, productScreen, cartScreen, addressScreen, addressScreen2, addressScreen3, orderScreen);
 	}
 	

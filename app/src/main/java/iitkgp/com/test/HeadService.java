@@ -340,6 +340,11 @@ public class HeadService extends Service implements TextToSpeech.OnInitListener 
 								String textToSay = screen.getTextToSay();
 //								int index = allKeywords.indexOf(mainKeyword.toLowerCase());
 								int index = screen.getCurrentMainKeywordIndex(allKeywords);
+								if(screen.getScreenid() == 3 && !allKeywords.contains("amount") && allKeywords.contains("proceed")) {
+									Log.d("SCREEN 3", "Changing main keyword");
+									index = allKeywords.indexOf("proceed");
+									textToSay = "यहाँ क्लिक करे और आपका रिचार्ज हो जाएगा";
+								}
 								if(index !=- 1) {
 									Log.d("MAIN KEYWORD", allKeywords.get(index));
 									params.x = (int) ((float)allPositions.get(index).x/bitmap.getWidth()*size.x);
